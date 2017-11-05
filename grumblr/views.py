@@ -218,7 +218,7 @@ def get_changes(request, time="1970-01-01T00:00+00:00"):
 def comment(request, item_id, time="1970-01-01T00:00+00:00"):
 	if 'time' in request.GET and request.GET['time']:
 		time = request.GET['time']
-	print(time)
+	#print(time)
 	max_time = Comment.get_max_time(int(item_id))
 	items = Comment.get_comments(itemid=int(item_id), time=time)
 	context = {"max_time":max_time, "items":items}
