@@ -1,0 +1,66 @@
+{% extends "grumblr/afterbase.html" %}
+{% block span%}
+      {% if passwordform %}
+        <div class="hero-unit">
+          {% for error in passwordform.non_field_errors %}
+            <p>{{error}}</p>
+          {% endfor %}
+          <form method="post" action="{% url 'change_password' %}">
+            <table>
+            {% for field in passwordform.visible_fields%}
+              <tr>
+                <td>{{field.label_tag}}</td>
+                <td>{{field}}</td>
+                <td>{{field.errors}}</td>
+              </tr>
+            {% endfor%}
+          </table>
+            {% csrf_token %}
+            <button class="btn btn-default btn-xs" type="submit">Change Password</button>
+          </form>
+        </div>
+      {% endif %}
+      {% if form %}
+      <div class="row">
+        <div class="span5">
+          <div class="hero-unit">
+          <form enctype="multipart/form-data" action="{%url 'editprofile' %}" method="post">
+          <table>
+            {% for field in form.visible_fields%}
+              <tr>
+                <td>{{field.label_tag}}</td>
+                <td>{{field}}</td>
+              </tr>
+            {% endfor%}
+          </table>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-default btn-xs"> Update Profile</button>
+          </form>
+          </div>
+        </div>
+        <div class="span7">
+        <div id="allpost">
+          {% for item in items %}
+          <div class="hero-unit" id="{{item.id}}">
+            <div class="media">
+              <a class="pull-left" href="{%url 'profile' item.user.username%}">
+                <img class="media-object img-circle" src="{% url 'photo' item.user.username %}">
+              </a>
+              <div class="pull-left media-body" > 
+                <a class="pull-left" href="{%url 'profile' item.user.username%}">
+                  <p>{{item.user.username}}: </p>
+                </a>       
+                <p class="pull-left">{{item.content}}</p>
+              </div>
+              <a class="pull-right" href="{% url 'delete' item.id %}">x</a>
+              <p class="pull-right time">{{item.time|date:'Y-m-d H:i:s'}}</p>
+              <button class="pull-right comment" id="comment" >comment</button>
+            </div>
+            <div id='commentplace'></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      </div>
+      {% endif %}
+{% endblock %}

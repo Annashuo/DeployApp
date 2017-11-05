@@ -1,0 +1,54 @@
+{% extends "grumblr/afterbase.html" %}
+{% block span%}
+      <div class="row">
+        <div class="span5">
+          <div class="hero-unit">
+          <table>
+            <tr>
+              <td>Email:</td>
+              <td>{{current_user.user.email}}</td>
+            </tr>
+            <tr>
+              <td>First Name:</td>
+              <td>{{current_user.first_name}}</td>
+            </tr>
+            <tr>
+              <td>Last Name:</td>
+              <td>{{current_user.last_name}}</td>
+            </tr>
+            <tr>
+              <td>Age:</td>
+              <td>{{current_user.age}}</td>
+            </tr>
+            <tr>
+              <td>Bio:</td>
+              <td>{{current_user.bio}}</td>
+            </tr>
+          </table>
+          </div>
+        </div>
+        <div class="span7">
+        <div id="allpost">
+          {% for item in items %}
+          <div class="hero-unit" id="{{item.id}}">
+            <div class="media">
+              <a class="pull-left" href="{%url 'profile' item.user.username%}">
+                <img class="media-object img-circle" src="{% url 'photo' item.user.username %}">
+              </a>
+              <div class="pull-left media-body" > 
+                <a class="pull-left" href="{%url 'profile' item.user.username%}">
+                  <p>{{item.user.username}}: </p>
+                </a>       
+                <p class="pull-left">{{item.content}}</p>
+              </div>
+              <p class="pull-right time">{{item.time|date:'Y-m-d H:i:s'}}</p>
+              <button class="pull-right comment" id="comment" >comment</button>
+            </div>
+            <div id='commentplace'></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      </div>
+      
+{% endblock%}

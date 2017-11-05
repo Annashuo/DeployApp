@@ -1,0 +1,35 @@
+{% extends "grumblr/afterbase.html" %}
+{% block container%}
+      <form class="well form-inline center" method="post">
+          {{form.content}}
+          {% if error %}
+          <span class="hidden help-block">{{error}}</span>
+          {% endif %}
+          <div class="btn-toolbar">
+            <div class="btn-group">
+              <button type="submit" class="btn" value="check">POST</button>
+            </div>
+          </div>
+          {% csrf_token %}
+      </form>
+      <div id="allpost">
+      {% for item in items %}
+          <div class="hero-unit" id="{{item.id}}">
+            <div class="media">
+              <a class="pull-left" href="{%url 'profile' item.user.username%}">
+                <img class="media-object img-circle" src="{% url 'photo' item.user.username %}">
+              </a>
+              <div class="pull-left media-body" > 
+                <a class="pull-left" href="{%url 'profile' item.user.username%}">
+                  <p>{{item.user.username}}: </p>
+                </a>       
+                <p class="pull-left">{{item.content}}</p>
+              </div>
+              <p class="pull-right time" id="{{item.time.isoformat}}">{{item.time|date:'Y-m-d H:i:s'}}</p>
+              <button class="pull-right comment" id="comment" >comment</button>
+            </div>
+            <div id='commentplace'></div>
+          </div>
+          {% endfor %}
+      </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title%}Sign up for Grumblr{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    {% load static %}
+    <link href="{% static 'grumblr/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'grumblr/css/style.css' %}">
+  </head>
+  <body>
+  	<div class="con default"></div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="{%url 'home' %}">GRUMBLR</a>
+        <ul class="nav pull-right">
+        {% block sidebar %}
+          <li><p class="navbar-text">Have an account?</p></li>
+          <li><a id="navbutton" href="{% url 'login' %}">Log in</a></li>
+        {% endblock %}
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+    {% block container %}{% endblock %}
+    </div> <!-- /container -->
+    {% load static %}
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{% static 'grumblr/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
