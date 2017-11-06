@@ -57,14 +57,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-#To enable real email-sending, you should uncomment and configure the settings below
-#EMAIL_HOST = 'smtp.andrew.cmu.edu'       #'smtp.andrew.cmu.edu'
-#EMAIL_PORT = 587
-#EMAIL_HOST_USER = 'shuoh1'    #andrew id
-#EMAIL_HOST_PASSWORD = 'Hua_nong_ying1120'
-#EMAIL_USE_TLS = True
 
 ROOT_URLCONF = 'webapps.urls'
 
