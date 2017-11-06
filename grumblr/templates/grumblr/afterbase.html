@@ -59,6 +59,12 @@
               <img class="media-object img-circle" src="{% url 'photo' current_user.user.username %}">
               <h3 class="media-heading">{{current_user.user.username}}</h3>
             </a>
+	    {% ifnotequal current_user.user  user %}
+            <form action="{% url 'profile' current_user.user.username %}" method="post" >
+              <button class="btn btn-default btn-xs" type="submit" >{{followbutton}}</button>
+              {% csrf_token %}
+            </form>
+            {% endifnotequal %}
             {% endif %}
             </div>
           </li>

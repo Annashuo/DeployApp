@@ -20,13 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hq%yw)lvpfw6ofu7vsufvm1e4mhd=8u6ay7iks^1o=t$o8do$%'
-#SECRET_KEY = os.environ['SECRET_KEY']
+with open('/home/ubuntu/secret_key.txt') as f:
+    txt = f.read().strip()
+    SECRET_KEY = txt.split(" ")[0]
+    password = txt.split(" ")[1]
+    emailpassword = txt.split(" ")[2]
+#SECRET_KEY = 'hq%yw)lvpfw6ofu7vsufvm1e4mhd=8u6ay7iks^1o=t$o8do$%'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['54.208.168.175']
+ALLOWED_HOSTS = ['54.208.168.175','ec2-54-208-168-175.compute-1.amazonaws.com']
 
 
 # Application definition
@@ -90,7 +94,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'grumblr',
 		'USER': 'root',
-		'PASSWORD': '123456',
+		'PASSWORD': password,
 	}
 }
 #    DATABASES = {
@@ -133,7 +137,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = '/home/ubuntu/DeployApp/media/'
 
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
@@ -148,5 +152,5 @@ SERVER_EMAIL = 'shuoh1@andrew.cmu.edu'
 EMAIL_HOST = 'smtp.andrew.cmu.edu'       #'smtp.andrew.cmu.edu'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'shuoh1'    #andrew id
-EMAIL_HOST_PASSWORD = 'Hua_nong_ying1120'
+EMAIL_HOST_PASSWORD = emailpassword
 EMAIL_USE_TLS = True
